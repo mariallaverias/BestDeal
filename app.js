@@ -5,7 +5,12 @@ var logger = require("morgan");
 const cors = require("cors");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var shopsRouter = require("./routes/shops");
+var productsRouter = require("./routes/products");
+var productCategoriesRouter = require("./routes/productCategories");
+var listRouter = require("./routes/list");
+var groceryListtRouter = require("./routes/groceryLists");
+var shop_productitems = require("./routes/shop_productitems");
 
 var app = express();
 app.use(cors());
@@ -17,6 +22,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/shops", shopsRouter);
+app.use("/products", productsRouter);
+app.use("/productCategory", productCategoriesRouter);
+app.use("/list", listRouter);
+app.use("/grocerylists", groceryListtRouter);
+app.use("/shop_productitems", shop_productitems);
 
 module.exports = app;
