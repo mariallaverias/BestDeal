@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 function AddGroceryListView(props) {
-  //******** */ Data ******
+  //*********/ Data ******
 
-  const [allProducts, setProducts] = useState("");
-  const [productCategories, setProductCategories] = useState("");
+  const [allProducts, setProducts] = useState([]);
+  const [productCategories, setProductCategories] = useState([]);
   const [shopProducts, setShopProducts] = useState("");
   const [tagProdCat, setTagProdCat] = useState("");
   const [tagProducts, setTagProducts] = useState("");
   const [selectedProdCat, setSelectedProdCat] = useState(productCategories[0]);
-  const [filteredProducts, setFilteredProducts] = useState(null);
+  const [selectedProd, setSelectedProd] = useState(allProducts[0]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     getProducts();
@@ -17,13 +18,17 @@ function AddGroceryListView(props) {
     getShopProducts();
   }, []);
 
+  useEffect(() => {
+    listProductsMenu();
+  }, [selectedProdCat]);
+
   async function getProductCategories() {
     try {
       let response = await fetch("/productcategory/");
       if (response.ok) {
         let prodCategoriesData = await response.json();
         setProductCategories(prodCategoriesData);
-        listProductCategories(prodCategoriesData);
+        listProductCategoriesMenu(prodCategoriesData);
       }
     } catch (err) {
       console.log(err.message);
@@ -36,7 +41,7 @@ function AddGroceryListView(props) {
       if (response.ok) {
         let productData = await response.json();
         setProducts(productData);
-        listProducts(productData);
+        listProductsMenu(productData);
       }
     } catch (err) {
       console.log(err.message);
@@ -55,10 +60,10 @@ function AddGroceryListView(props) {
     }
   }
 
-  //***FUNCTIONS FOR VISUALIZARION */
+  //***FUNCTIONS FOR VISUALIZATION */
 
   // Map all the product categories
-  const listProductCategories = (categories) => {
+  const listProductCategoriesMenu = (categories) => {
     const productCategoriesList = categories.map((pC) => (
       <option key={pC.id} value={pC.id}>
         {pC.name}
@@ -67,25 +72,39 @@ function AddGroceryListView(props) {
     setTagProdCat(productCategoriesList);
   };
 
-  const listProducts = (items) => {
-    const filterproducts = items.filter(
+  //Based on the product categories, I filter the products to show in the select
+  const listProductsMenu = async () => {
+    const filterproducts = await allProducts.filter(
       (p) => p.fk_productCategoryId === Number(selectedProdCat)
     );
     setFilteredProducts(filterproducts);
 
-    const productList = filteredProducts.map((p) => (
-      <option key={p.id} value={p.name} />
+    const productList = await filterproducts.map((p) => (
+      <option key={p.id} value={p.id}>
+        {p.name}
+      </option>
     ));
-
     setTagProducts(productList);
   };
 
-  const handleChange = (event) => {
+  //********Functions for handling changes and submit ********
+
+  //To set state with the selected category so that I can use it to filter:
+  const handleCategoryChange = (event) => {
     setSelectedProdCat(event.target.value);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    // I want to show the selected product in the list div.
+    // I have to grab the product Id saved as State in Selected Prod
   };
+
+  const handleProductChange = (event) => {
+    setSelectedProd(event.target.value);
+    console.log(event);
+  };
+
   return (
     <div>
       <h2>What would you like to buy?</h2>
@@ -100,25 +119,44 @@ function AddGroceryListView(props) {
           /> */}
           <select
             value={selectedProdCat}
-            onChange={handleChange}
+            onChange={handleCategoryChange}
             defaultValue={"default"}
           >
             <option value="default" disabled>
               Select product category
             </option>
-
             {tagProdCat}
           </select>
         </div>
         <div>
           <label> Product </label>
-          <input
+          {
+            //Datalist Attempt
+            /* <input
             list="filteredProducts"
-            name="productsInCategory"
-            id="productsInCategory"
-          />
-          <datalist id="filteredProducts">{tagProducts}</datalist>
-          <button>+</button>
+            name="prodsFiltered"
+            id="prodsFiltered"
+            autoComplete="off"
+            onChange={handleProductChange}
+          /> 
+          <datalist
+          id="filteredProducts"
+        >
+          {tagProducts}
+        </datalist>
+          */
+          }
+          <select
+            value={selectedProd}
+            onChange={handleProductChange}
+            defaultValue={"default"}
+          >
+            <option value="default" disabled>
+              Select product category
+            </option>
+            {tagProducts}
+          </select>
+          <button onSubmit={handleSubmit}>+</button>
         </div>
       </form>
     </div>
