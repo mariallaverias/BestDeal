@@ -5,65 +5,79 @@ DROP TABLE IF EXISTS grocerylists;
 DROP TABLE IF EXISTS list;
 DROP TABLE IF EXISTS shops;
 DROP TABLE IF EXISTS shops_productItems;
+DROP TABLE IF EXISTS products_list;
 SET foreign_key_checks = 1;
  
- 
 CREATE TABLE productcategories (
-   id INT NOT NULL AUTO_INCREMENT,
-   name varchar(255) NOT NULL,
-   PRIMARY KEY (id)
+	id INT NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	PRIMARY KEY (id)
 );
- 
+
 CREATE TABLE productitems (
-   id INT NOT NULL AUTO_INCREMENT,
-   name varchar(255) NOT NULL,
-   brand varchar(255) NOT NULL,
-   packageQuantity INT NOT NULL,
-   fk_productCategoryId INT NOT NULL,
-   PRIMARY KEY (id)
+	id INT NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	brand varchar(255) NOT NULL,
+	packageQuantity INT NOT NULL,
+	fk_productCategoryId INT NOT NULL,
+	PRIMARY KEY (id)
 );
- 
-CREATE TABLE grocerylists (
-   id INT NOT NULL AUTO_INCREMENT,
-   listName varchar(255),
-   PRIMARY KEY (id)
-);
- 
+
 CREATE TABLE list (
-   id INT NOT NULL AUTO_INCREMENT,
-   fk_groceryListID INT NOT NULL,
-   fk_productID INT NOT NULL,
-   productQuantity INT NOT NULL,
-   PRIMARY KEY (id)
+	id INT NOT NULL AUTO_INCREMENT,
+	listName varchar(255),
+	products VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id)
 );
- 
+
 CREATE TABLE shops (
-   shopId INT NOT NULL AUTO_INCREMENT,
-   name varchar(255) NOT NULL,
-   PRIMARY KEY (shopId)
+	shopId INT NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	PRIMARY KEY (shopId)
 );
- 
+
 CREATE TABLE shops_productItems (
-   id INT NOT NULL AUTO_INCREMENT,
-   fk_productId INT NOT NULL,
-   price DECIMAL(10,2) NOT NULL,
-   fk_shopID INT NOT NULL,
-   PRIMARY KEY (id)
+	id INT NOT NULL AUTO_INCREMENT,
+	fk_shopID INT NOT NULL,
+	fk_productId INT NOT NULL,
+	price DECIMAL(10,2) NOT NULL,
+	PRIMARY KEY (id)
 );
- 
- 
- 
-ALTER TABLE productitems ADD CONSTRAINT ProductItems_fk0 FOREIGN KEY (fk_productCategoryId) REFERENCES productcategories(id);
- 
-ALTER TABLE list ADD CONSTRAINT List_fk0 FOREIGN KEY (fk_groceryListID) REFERENCES grocerylists(id);
- 
-ALTER TABLE list ADD CONSTRAINT List_fk1 FOREIGN KEY (fk_productID) REFERENCES productitems(id);
- 
-ALTER TABLE shops_productItems ADD CONSTRAINT shops_productItem_fk0 FOREIGN KEY (fk_shopID) REFERENCES shops(shopId);
- 
-ALTER TABLE shops_productItems ADD CONSTRAINT shops_productItem_fk1 FOREIGN KEY (fk_productId) REFERENCES productitems(id);
- 
- 
+
+CREATE TABLE products_list (
+	fk_listId INT NOT NULL,
+	fk_prodId INT NOT NULL
+);
+
+ALTER TABLE productitems ADD CONSTRAINT productitems_fk0 FOREIGN KEY (fk_productCategoryId) REFERENCES productcategories(id);
+
+ALTER TABLE shops_productItems ADD CONSTRAINT shops_productItems_fk0 FOREIGN KEY (fk_shopID) REFERENCES shops(shopId);
+
+ALTER TABLE shops_productItems ADD CONSTRAINT shops_productItems_fk1 FOREIGN KEY (fk_productId) REFERENCES productitems(id);
+
+ALTER TABLE products_list ADD CONSTRAINT products_list_fk0 FOREIGN KEY (fk_listId) REFERENCES list(id);
+
+ALTER TABLE products_list ADD CONSTRAINT products_list_fk1 FOREIGN KEY (fk_prodId) REFERENCES productitems(id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 INSERT INTO productcategories(name)
 VALUES ("Aceite, especias y salsas"),

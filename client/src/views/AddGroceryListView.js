@@ -11,6 +11,8 @@ function AddGroceryListView(props) {
   const [selectedProdCat, setSelectedProdCat] = useState(productCategories[0]);
   const [selectedProd, setSelectedProd] = useState(allProducts[0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState("");
 
   useEffect(() => {
     getProducts();
@@ -21,6 +23,8 @@ function AddGroceryListView(props) {
   useEffect(() => {
     listProductsMenu();
   }, [selectedProdCat]);
+
+  useEffect(() => {}, []);
 
   async function getProductCategories() {
     try {
@@ -96,6 +100,8 @@ function AddGroceryListView(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setNewItem(selectedProd);
+    setItems([...items, newItem]);
     // I want to show the selected product in the list div.
     // I have to grab the product Id saved as State in Selected Prod
   };
@@ -159,6 +165,14 @@ function AddGroceryListView(props) {
           <button onSubmit={handleSubmit}>+</button>
         </div>
       </form>
+
+      <div>
+        <ul>
+          {items.map((item, i) => {
+            return <li key={i}>{item}</li>;
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
