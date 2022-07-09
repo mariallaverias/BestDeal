@@ -9,7 +9,6 @@ var shopsRouter = require("./routes/shops");
 var productsRouter = require("./routes/products");
 var productCategoriesRouter = require("./routes/productCategories");
 var listRouter = require("./routes/list");
-var groceryListtRouter = require("./routes/groceryLists");
 var shop_productitems = require("./routes/shop_productitems");
 
 var app = express();
@@ -26,7 +25,6 @@ app.use("/shops", shopsRouter);
 app.use("/products", productsRouter);
 app.use("/productCategory", productCategoriesRouter);
 app.use("/list", listRouter);
-app.use("/grocerylists", groceryListtRouter);
 app.use("/shop_productitems", shop_productitems);
 
 module.exports = app;

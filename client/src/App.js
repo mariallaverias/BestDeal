@@ -16,7 +16,6 @@ function App() {
 
   const [shops, setShops] = useState("");
   const [list, setList] = useState("");
-  const [groceryLists, setGroceryList] = useState("");
 
   useEffect(() => {
     getShops();
@@ -25,22 +24,6 @@ function App() {
   useEffect(() => {
     getList();
   }, []);
-
-  useEffect(() => {
-    getGroceryList();
-  }, []);
-
-  async function getGroceryList() {
-    try {
-      let response = await fetch("/grocerylists/");
-      if (response.ok) {
-        let groceryListData = await response.json();
-        setGroceryList(groceryListData);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
 
   async function getList() {
     try {
