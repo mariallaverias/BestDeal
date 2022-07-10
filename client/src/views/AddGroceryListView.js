@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 
 import SelectGroceriesForm from "../components/SelectGroceriesForm";
 import DisplayGroceryList from "../components/DisplayGroceryList";
-import ButtonConfirmList from "../components/ButtonConfirmList";
+import Button from "../components/Button";
 
 function AddGroceryListView(props) {
   //*********/ Data ******
@@ -78,7 +78,7 @@ function AddGroceryListView(props) {
         filteredList={filteredList}
       />
       {newItems && newItems.length > 1 ? (
-        <ButtonConfirmList handleConfirmList={handleConfirmList} />
+        <Button function={handleConfirmList} buttonName="Confirm List" />
       ) : null}
       {/***LIST OF ITEMS IN THE GROCERY LIST****/}
     </div>

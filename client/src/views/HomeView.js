@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import ButtonSaveList from "../components/ButtonSaveList";
+import Button from "../components/Button";
 import Supermarket from "../components/Supermarket";
 import Welcome from "../components/Welcome";
 
@@ -43,9 +43,15 @@ function HomeView(props) {
 
   return (
     <div>
-      <h2>Best Deal</h2>
-      <div>{!displayList ? <Welcome /> : { displayList }}</div>
-      <div>{confirmedList ? <ButtonSaveList saveList={saveList} /> : null}</div>
+      <div>{displayList}</div>
+      <div>
+        {confirmedList ? (
+          <Button function={saveList} buttonName="Save List" />
+        ) : null}
+      </div>
+
+      <Welcome shops={shops} />
+
       <table>
         <thead>
           <tr>

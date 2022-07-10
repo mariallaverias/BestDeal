@@ -16,24 +16,6 @@ function App() {
 
   const [confirmedList, setConfirmedList] = useState(""); // USESTATE 1
 
-  /// THIS FUNCTION SHOULD BE USED IN THE MY LISTS SECTION ???
-
-  // useEffect(() => {
-  //   getList();
-  // }, []);
-
-  // async function getList() {
-  //   try {
-  //     let response = await fetch("/list/");
-  //     if (response.ok) {
-  //       let listData = await response.json();
-  //       setList(listData);
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }
-
   ///****  Setting data in Parent */
 
   const handleConfirmList = (filteredList) => {
@@ -46,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello Im the front end App</h1>
+      <h1>Best Deal</h1>
 
       <Navbar />
 

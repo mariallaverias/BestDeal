@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Welcome(props) {
   const shops = props.shops;
+  const [checked, setChecked] = useState("");
+
+  const handleClick = (event) => {
+    console.log(event);
+    const clicked = event.target.value;
+    console.log(clicked);
+    setChecked([...checked, clicked]);
+  };
 
   return (
     <div>
@@ -9,8 +17,14 @@ export default function Welcome(props) {
       <form>
         {shops &&
           shops.map((shop) => (
-            <label>
-              <input type="checkbox" key={shop.id} value={shop.id} />
+            <label key={shop.id}>
+              <input
+                id={shop.id}
+                type="checkbox"
+                key={shop.name}
+                onClick={handleClick}
+                value={shop.id}
+              />
               {shop.name}
             </label>
           ))}
