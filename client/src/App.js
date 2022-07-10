@@ -14,12 +14,7 @@ import Navbar from "./components/Navbar";
 function App() {
   //********Data ******
 
-  const [shops, setShops] = useState(""); // USESTATE 3
-  const [confirmedList, setConfirmedList] = useState(""); // USESTATE 4
-
-  useEffect(() => {
-    getShops();
-  }, []);
+  const [confirmedList, setConfirmedList] = useState(""); // USESTATE 1
 
   /// THIS FUNCTION SHOULD BE USED IN THE MY LISTS SECTION ???
 
@@ -38,18 +33,6 @@ function App() {
   //     console.log(err.message);
   //   }
   // }
-
-  async function getShops() {
-    try {
-      let response = await fetch("/shops/");
-      if (response.ok) {
-        let shopsData = await response.json();
-        setShops(shopsData);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
 
   ///****  Setting data in Parent */
 

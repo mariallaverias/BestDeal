@@ -7,7 +7,7 @@ async function shopMustExist(req, res, next) {
   try {
     const { id } = req.params;
     const result = await db(
-      `SELECT * FROM shops_productiItems WHERE fk_shopID=${id}`
+      `SELECT * FROM shops_productitems WHERE fk_shopID=${id}`
     );
     if (result.data.length) {
       next();
@@ -27,12 +27,17 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-router.get("/:id", async function (req, res, next) {
+//JUNCTION TABLE - returns all the products in a shop by shopId, along with the details of the products
+
+router.get("/:id", shopMustExist, async function (req, res, next) {
   try {
     const { id } = req.params;
-    const result = await db(
-      `SELECT * FROM shops_productItems WHERE fk_shopID=${id}`
-    );
+    const sql = `SELECT sp.*, pi.*,  sp.fk_shopID AS shopId, sp.fk_productId AS productId
+    FROM shops_productItems AS sp
+    LEFT JOIN productitems AS pi ON sp.fk_productId = pi.id
+    WHERE fk_shopID=${id} `;
+
+    const result = await db(sql);
     res.status(200).send(result.data);
   } catch (err) {
     res.status(500).send({ error: err.message });
