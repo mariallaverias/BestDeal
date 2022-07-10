@@ -12,30 +12,32 @@ import MyListsView from "./views/MyListsView";
 import Navbar from "./components/Navbar";
 
 function App() {
-  //******** */ Data ******
+  //********Data ******
 
-  const [shops, setShops] = useState("");
-  const [list, setList] = useState("");
+  const [shops, setShops] = useState(""); // USESTATE 3
+  const [confirmedList, setConfirmedList] = useState(""); // USESTATE 4
 
   useEffect(() => {
     getShops();
   }, []);
 
-  useEffect(() => {
-    getList();
-  }, []);
+  /// THIS FUNCTION SHOULD BE USED IN THE MY LISTS SECTION ???
 
-  async function getList() {
-    try {
-      let response = await fetch("/list/");
-      if (response.ok) {
-        let listData = await response.json();
-        setList(listData);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
+  // useEffect(() => {
+  //   getList();
+  // }, []);
+
+  // async function getList() {
+  //   try {
+  //     let response = await fetch("/list/");
+  //     if (response.ok) {
+  //       let listData = await response.json();
+  //       setList(listData);
+  //     }
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }
 
   async function getShops() {
     try {
@@ -49,7 +51,16 @@ function App() {
     }
   }
 
-  //***VISUALIZATION *****/
+  ///****  Setting data in Parent */
+
+  const handleConfirmList = (filteredList) => {
+    setConfirmedList(filteredList);
+  };
+
+  const saveListInParent = () => {}; /// THIS FUNCTION SHOULD POST THE LIST IN THE DB.
+
+  //Components
+
   return (
     <div className="App">
       <h1>Hello Im the front end App</h1>
@@ -57,8 +68,19 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route path="/AddGroceryList" element={<AddGroceryListView />} />
+        <Route
+          path="/"
+          element={
+            <HomeView
+              confirmedList={confirmedList}
+              saveListInParent={saveListInParent}
+            />
+          }
+        />
+        <Route
+          path="/AddGroceryList"
+          element={<AddGroceryListView handleConfirmList={handleConfirmList} />}
+        />
         <Route path="/myLists" element={<MyListsView />} />
       </Routes>
     </div>
