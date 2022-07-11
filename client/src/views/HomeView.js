@@ -1,14 +1,16 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Button from "../components/Button";
 import Supermarket from "../components/Supermarket";
 import Welcome from "../components/Welcome";
 
 function HomeView(props) {
   const [shops, setShops] = useState(""); // USESTATE 1
-
-  const [displayList, setDisplayList] = useState(); // USESTATE 2
-
+  const [displayList, setDisplayList] = useState([]); // USESTATE 2
+  const navigate = useNavigate();
   const confirmedList = props.confirmedList;
+  const selectedShops = props.selectedShops;
 
   useEffect(() => {
     getShops();
@@ -16,7 +18,7 @@ function HomeView(props) {
 
   useEffect(() => {
     renderList();
-  }, [confirmedList]);
+  }, [props.confirmedList]);
 
   async function getShops() {
     try {
@@ -29,6 +31,10 @@ function HomeView(props) {
       console.log(err.message);
     }
   }
+
+  const shopsSelected = (shops) => {
+    props.shopsSelected(shops);
+  };
 
   const renderList = async () => {
     const display =
@@ -43,6 +49,7 @@ function HomeView(props) {
 
   return (
     <div>
+      <Welcome shops={shops} shopsSelected={(shops) => shopsSelected(shops)} />
       <div>{displayList}</div>
       <div>
         {confirmedList ? (
@@ -50,31 +57,35 @@ function HomeView(props) {
         ) : null}
       </div>
 
-      <Welcome shops={shops} />
-
       <table>
         <thead>
           <tr>
             <td>
-              <Supermarket
-                marketName="Superdona"
-                shopId="1"
-                confirmedList={confirmedList}
-              ></Supermarket>
+              {props.selectedShops.includes("1") ? (
+                <Supermarket
+                  marketName="Superdona"
+                  shopId="1"
+                  confirmedList={props.confirmedList}
+                ></Supermarket>
+              ) : null}
             </td>
             <td>
-              <Supermarket
-                marketName="Corte Escocés"
-                shopId="2"
-                confirmedList={confirmedList}
-              ></Supermarket>
+              {props.selectedShops.includes("2") ? (
+                <Supermarket
+                  marketName="Corte Escocés"
+                  shopId="2"
+                  confirmedList={props.confirmedList}
+                ></Supermarket>
+              ) : null}
             </td>
             <td>
-              <Supermarket
-                marketName="Anacard"
-                shopId="3"
-                confirmedList={confirmedList}
-              ></Supermarket>
+              {props.selectedShops.includes("3") ? (
+                <Supermarket
+                  marketName="Anacard"
+                  shopId="3"
+                  confirmedList={props.confirmedList}
+                ></Supermarket>
+              ) : null}
             </td>
           </tr>
         </thead>

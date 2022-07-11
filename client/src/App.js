@@ -1,7 +1,7 @@
 //***React - React Router Stuff ****
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 //***Views***
 import HomeView from "./views/HomeView";
@@ -15,11 +15,20 @@ function App() {
   //********Data ******
 
   const [confirmedList, setConfirmedList] = useState(""); // USESTATE 1
+  const [selectedShops, setSelectedShops] = useState([]); //USESTATE 2
+  const navigate = useNavigate();
 
   ///****  Setting data in Parent */
 
   const handleConfirmList = (filteredList) => {
     setConfirmedList(filteredList);
+    navigate("/");
+  };
+
+  const shopsSelected = (shops) => {
+    console.log("called");
+    setSelectedShops(shops);
+    navigate("/AddGroceryList");
   };
 
   const saveListInParent = () => {}; /// THIS FUNCTION SHOULD POST THE LIST IN THE DB.
@@ -39,6 +48,8 @@ function App() {
             <HomeView
               confirmedList={confirmedList}
               saveListInParent={saveListInParent}
+              shopsSelected={(shops) => shopsSelected(shops)}
+              selectedShops={selectedShops}
             />
           }
         />

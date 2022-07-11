@@ -52,9 +52,9 @@ function AddGroceryListView(props) {
   //SETTING STATE RECEIVED FROM CHILDREN
 
   const listGroceryList = async (items) => {
-    await setNewItems(items);
+    setNewItems(items);
 
-    const ids = newItems && (await newItems.map((item) => +item)); // turn the added id's into numbers
+    const ids = items && (await items.map((item) => +item)); // turn the added id's into numbers
 
     const y = ids && (await allProducts.filter((p) => ids.includes(+p.id))); // filters the products that match those ids
 
@@ -77,7 +77,7 @@ function AddGroceryListView(props) {
         allProducts={allProducts}
         filteredList={filteredList}
       />
-      {newItems && newItems.length > 1 ? (
+      {newItems && newItems.length > 0 ? (
         <Button function={handleConfirmList} buttonName="Confirm List" />
       ) : null}
       {/***LIST OF ITEMS IN THE GROCERY LIST****/}

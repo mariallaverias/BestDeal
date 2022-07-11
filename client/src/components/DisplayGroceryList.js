@@ -6,12 +6,12 @@ function DisplayGroceryList(props) {
 
   useEffect(() => {
     showItems();
-  }, [filteredList]);
+  }, [props.filteredList]);
 
   const showItems = async () => {
     const x =
-      filteredList &&
-      (await filteredList.map((p) => <li key={p.id}>{p.name}</li>)); // creates the <LI's to print>
+      props.filteredList &&
+      props.filteredList.map((p) => <li key={p.id}>{p.name}</li>); // creates the <LI's to print>
     setGroceryList([x]);
   };
 

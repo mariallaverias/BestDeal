@@ -5,9 +5,9 @@ function Supermarket(props) {
   const marketName = props.marketName;
   const shopId = Number(props.shopId);
   const confirmedList = props.confirmedList;
-  const [shopProds, setShopProds] = useState(); //USESTATE 2
-  const [display, setDisplay] = useState(); // USESTATE 3
-  const [total, setTotal] = useState(); // USESTATE 4
+  const [shopProds, setShopProds] = useState([]); //USESTATE 2
+  const [display, setDisplay] = useState([]); // USESTATE 3
+  const [total, setTotal] = useState(0); // USESTATE 4
 
   useEffect(() => {
     getShopsProds();
@@ -15,7 +15,7 @@ function Supermarket(props) {
 
   useEffect(() => {
     showProductsInShop();
-  }, [confirmedList]);
+  }, [props.confirmedList, shopProds]);
 
   useEffect(() => {
     calculateTotalPrice();
@@ -38,19 +38,20 @@ function Supermarket(props) {
   //filter the products by Id with the array of the confirmed list
   const showProductsInShop = async () => {
     const ids =
-      confirmedList && (await confirmedList.map((item) => Number(item.id)));
+      props.confirmedList &&
+      (await props.confirmedList.map((item) => Number(item.id)));
 
     const selection =
       ids && shopProds && (await shopProds.filter((p) => ids.includes(+p.id)));
 
-    setDisplay(selection);
+    await setDisplay(selection);
   };
 
   const calculateTotalPrice = async () => {
-    let total = 0;
+    let result = 0;
     const ids =
-      display && (await display.map((item) => (total += Number(item.price))));
-    await setTotal(Number(total));
+      display && (await display.map((item) => (result += Number(item.price))));
+    await setTotal(Number(result));
   };
   return (
     <div>
@@ -67,7 +68,7 @@ function Supermarket(props) {
             </tr>
           </thead>
           <tbody>
-            {display &&
+            {display.length > 0 &&
               display.map((d) => (
                 <tr key={d.id}>
                   <td>{d.name}</td>
@@ -79,7 +80,7 @@ function Supermarket(props) {
           </tbody>
         </table>
       </div>
-      <h3>{total}€</h3>
+      <h3>{total.toFixed(2)}€</h3>
     </div>
   );
 }

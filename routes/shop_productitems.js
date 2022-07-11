@@ -32,7 +32,7 @@ router.get("/", async function (req, res, next) {
 router.get("/:id", shopMustExist, async function (req, res, next) {
   try {
     const { id } = req.params;
-    const sql = `SELECT sp.*, pi.*,  sp.fk_shopID AS shopId, sp.fk_productId AS productId
+    const sql = `SELECT sp.*, pi.*,  sp.fk_productId AS productId
     FROM shops_productItems AS sp
     LEFT JOIN productitems AS pi ON sp.fk_productId = pi.id
     WHERE fk_shopID=${id} `;

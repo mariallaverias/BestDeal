@@ -64,8 +64,10 @@ function SelectGroceriesForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setItems([...items, selectedProd]);
-    items && props.listGroceryList(items);
+    let newItems = [...items, selectedProd];
+
+    setItems(newItems);
+    props.listGroceryList(newItems);
 
     // I want to show the selected product in the list div.
     // I have to grab the product Id saved as State in Selected Prod
