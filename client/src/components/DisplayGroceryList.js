@@ -12,13 +12,17 @@ function DisplayGroceryList(props) {
     const x =
       props.filteredList &&
       props.filteredList.map((p) => (
-        <li key={p.id}>
-          <p className="inline">{p.name}</p>{" "}
+        <li
+          key={p.id}
+          className="list-group-item justify-content-between align-items-center"
+        >
+          <p className=" d-inline ">{p.name}</p>
           <button
-            className="inline"
+            type="button"
+            className=" btn btn-danger btn-sm d-inline padding-left: 5px"
             onClick={(id) => props.removeFromFilteredList(p.id)}
           >
-            Delete
+            x
           </button>
         </li>
       )); // creates the <LI's to print>
@@ -29,11 +33,11 @@ function DisplayGroceryList(props) {
   //   props.addList();
   // };
   return (
-    <div>
+    <div className="container">
       <h3>Grocery List</h3>
-      <ul>{groceryList}</ul>
-
-      {/* <button onClick={handleSubmit}>Confirm List</button> */}
+      <div className="container">
+        <ul className="list-group">{groceryList}</ul>
+      </div>
     </div>
   );
 }

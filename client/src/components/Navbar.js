@@ -4,19 +4,21 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <nav className="Navbar">
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/AddGroceryList">Add Grocery List</NavLink>
-        </li>
-        <li>
-          <NavLink to="/myLists">My lists</NavLink>
-        </li>
-      </ul>
-    </nav>
+    <div className="container">
+      <nav className="nav justify-content-center">
+        <ul className="nav justify-content-center">
+          <li className="nav-item">
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/AddGroceryList">Add Grocery List</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myLists">My lists</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }
 export default Navbar;

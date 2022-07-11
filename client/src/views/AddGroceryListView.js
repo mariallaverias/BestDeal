@@ -75,7 +75,7 @@ function AddGroceryListView(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <SelectGroceriesForm
         allProducts={allProducts}
         productCategories={productCategories}
@@ -86,10 +86,11 @@ function AddGroceryListView(props) {
         filteredList={filteredList}
         removeFromFilteredList={removeFromFilteredList}
       />
-      {newItems && newItems.length > 0 ? (
-        <Button function={handleConfirmList} buttonName="Confirm List" />
-      ) : null}
-      {/***LIST OF ITEMS IN THE GROCERY LIST****/}
+      <div className="container md-3">
+        {newItems && newItems.length > 0 ? (
+          <Button function={handleConfirmList} buttonName="Confirm List" />
+        ) : null}
+      </div>
     </div>
   );
 }

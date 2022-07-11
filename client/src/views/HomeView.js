@@ -5,6 +5,10 @@ import Button from "../components/Button";
 import Supermarket from "../components/Supermarket";
 import Welcome from "../components/Welcome";
 
+import Anacard from "../images/Anacard.jpg";
+import Superdona from "../images/Superdona.jpg";
+import CorteEscoces from "../images/CorteEscoces.jpg";
+
 function HomeView(props) {
   const [shops, setShops] = useState(""); // USESTATE 1
   const [displayList, setDisplayList] = useState([]); // USESTATE 2
@@ -39,7 +43,11 @@ function HomeView(props) {
   const renderList = async () => {
     const display =
       confirmedList &&
-      (await confirmedList.map((p) => <li key={p.id}>{p.name}</li>));
+      (await confirmedList.map((p) => (
+        <li className="list-group-item" key={p.id}>
+          {p.name}
+        </li>
+      )));
     setDisplayList(display);
   };
 
@@ -47,13 +55,13 @@ function HomeView(props) {
     props.saveListInParent();
   };
 
-  //Code from: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
+  //Code to refreshPage from: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
   function refreshPage() {
     window.location.reload(false);
   }
 
   return (
-    <div>
+    <div className="App Container">
       {!displayList ? (
         <Welcome
           shops={shops}
@@ -61,48 +69,59 @@ function HomeView(props) {
         />
       ) : null}
 
-      <div>{displayList}</div>
+      <div>
+        <ul className="list-group">{displayList}</ul>
+      </div>
       <div>
         {confirmedList ? (
           <Button function={saveList} buttonName="Save List" />
         ) : null}
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <td>
-              {props.selectedShops.includes("1") ? (
-                <Supermarket
-                  marketName="Superdona"
-                  shopId="1"
-                  confirmedList={props.confirmedList}
-                ></Supermarket>
-              ) : null}
-            </td>
-            <td>
-              {props.selectedShops.includes("2") ? (
-                <Supermarket
-                  marketName="Corte Escocés"
-                  shopId="2"
-                  confirmedList={props.confirmedList}
-                ></Supermarket>
-              ) : null}
-            </td>
-            <td>
-              {props.selectedShops.includes("3") ? (
-                <Supermarket
-                  marketName="Anacard"
-                  shopId="3"
-                  confirmedList={props.confirmedList}
-                ></Supermarket>
-              ) : null}
-            </td>
-          </tr>
-        </thead>
-      </table>
+      <div className="container">
+        <table className="table responsive">
+          <thead>
+            <tr>
+              <td>
+                {props.selectedShops.includes("1") ? (
+                  <Supermarket
+                    marketName="Superdona"
+                    shopId="1"
+                    confirmedList={props.confirmedList}
+                    src={Superdona}
+                  ></Supermarket>
+                ) : null}
+              </td>
+              <td>
+                {props.selectedShops.includes("2") ? (
+                  <Supermarket
+                    marketName="Corte Escocés"
+                    shopId="2"
+                    confirmedList={props.confirmedList}
+                    src={CorteEscoces}
+                  ></Supermarket>
+                ) : null}
+              </td>
+              <td>
+                {props.selectedShops.includes("3") ? (
+                  <Supermarket
+                    marketName="Anacard"
+                    shopId="3"
+                    confirmedList={props.confirmedList}
+                    src={Anacard}
+                  ></Supermarket>
+                ) : null}
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
       {displayList ? (
-        <button onClick={refreshPage}>New Grocery List</button>
+        <button
+          className="btn btn-outline-success btn-lg"
+          onClick={refreshPage}
+        >
+          New Grocery List
+        </button>
       ) : null}
     </div>
   );

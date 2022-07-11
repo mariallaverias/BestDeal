@@ -56,10 +56,11 @@ function Supermarket(props) {
   };
   return (
     <div>
-      <h3>{marketName}</h3>
-      <p>{shopId}</p>
       <div>
-        <table>
+        <img src={props.src} className="table-logo"></img>
+      </div>
+      <div>
+        <table className="table table-bordered border-success padding">
           <thead>
             <tr>
               <th>Product</th>
@@ -68,7 +69,7 @@ function Supermarket(props) {
               <th>Qty(gr)</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-group-divider">
             {display.length > 0 &&
               display.map((d) => (
                 <tr key={d.id}>

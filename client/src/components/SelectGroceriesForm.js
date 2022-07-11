@@ -78,33 +78,35 @@ function SelectGroceriesForm(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>What would you like to buy?</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Product Category </label>
-          {/* <input
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Product Category </label>
+            {/* <input
             list="productCategories"
             name="productCategoryChoice"
             id="productCategoryChoice"
             onChange={handleChange}
           /> */}
-          <select
-            value={selectedProdCat}
-            onChange={handleCategoryChange}
-            defaultValue={"default"}
-          >
-            <option value="default" disabled>
-              Select product category
-            </option>
-            {tagProdCat}
-          </select>
-        </div>
-        <div>
-          <label> Product </label>
-          {
-            //Datalist Attempt
-            /* <input
+            <select
+              className="form-select form-select-l mb-3"
+              value={selectedProdCat}
+              onChange={handleCategoryChange}
+              defaultValue={"default"}
+            >
+              <option value="default" disabled>
+                Select product category
+              </option>
+              {tagProdCat}
+            </select>
+          </div>
+          <div>
+            <label> Product </label>
+            {
+              //Datalist Attempt
+              /* <input
             list="filteredProducts"
             name="prodsFiltered"
             id="prodsFiltered"
@@ -117,20 +119,29 @@ function SelectGroceriesForm(props) {
           {tagProducts}
         </datalist>
           */
-          }
-          <select
-            value={selectedProd}
-            onChange={handleProductChange}
-            defaultValue={"default"}
-          >
-            <option value="default" disabled>
-              Select product category
-            </option>
-            {tagProducts}
-          </select>
-          <button onSubmit={handleSubmit}>+</button>
-        </div>
-      </form>
+            }
+
+            <select
+              className="form-select inline"
+              value={selectedProd}
+              onChange={handleProductChange}
+              defaultValue={"default"}
+            >
+              <option className="inline" value="default" disabled>
+                Select product
+              </option>
+              {tagProducts}
+            </select>
+            <button
+              className="inline 
+            btn btn-outline-success btn-lg"
+              onSubmit={handleSubmit}
+            >
+              +
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

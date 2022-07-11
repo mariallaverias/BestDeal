@@ -1,10 +1,11 @@
 nav {
-  border: 1px solid #ccc;
+  border: 1px solid #5cb85c;
+  color: #5cb85c !important;
 }
 
 nav ul {
   list-style-type: none;
-  padding: 0;
+  padding: 15px;
 }
 
 nav li {
@@ -18,5 +19,6 @@ nav a {
 
 /* 'active' class automatically added by React Router */
 nav a.active {
-  background-color: #ccc;
+  background-color: #5cb85c;
+  color: white;
 }

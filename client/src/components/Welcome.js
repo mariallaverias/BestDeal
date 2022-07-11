@@ -25,23 +25,35 @@ export default function Welcome(props) {
 
   return (
     <div>
-      <h3>Which shops would you like to compare?</h3>
-      <form onSubmit={handleSubmit}>
-        {props.shops &&
-          props.shops.map((shop) => (
-            <label key={shop.shopId}>
-              <input
-                name={shop.shopId}
-                type="checkbox"
-                key={shop.name}
-                onClick={handleClick}
-                value={shop.shopId}
-              />
-              {shop.name}
-            </label>
-          ))}
-        <button type="submit"> Add Grocery List</button>
-      </form>
+      <div className="container">
+        <h3>Which shops would you like to compare?</h3>
+        <div>
+          <form onSubmit={handleSubmit}>
+            {props.shops &&
+              props.shops.map((shop) => (
+                <div
+                  key={shop.shopId}
+                  className="  form-check form-check-inline container"
+                >
+                  <label className="form-check-label" key={shop.shopId}>
+                    <input
+                      className="form-check-input"
+                      name={shop.shopId}
+                      type="checkbox"
+                      key={shop.name}
+                      onClick={handleClick}
+                      value={shop.shopId}
+                    />
+                    {shop.name}
+                  </label>
+                </div>
+              ))}
+            <button className="btn btn-outline-success btn-lg" type="submit">
+              Add Grocery List
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

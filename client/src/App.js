@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import logo from "./images/Best-Deal.jpg";
 
 //***Views***
 import HomeView from "./views/HomeView";
@@ -36,29 +37,42 @@ function App() {
   //Components
 
   return (
-    <div className="App">
-      <h1>Best Deal</h1>
+    <div>
+      <div className="bg">
+        <div className="App bg ">
+          <div className="container">
+            <img
+              src={logo}
+              alt="Best Deal Logo - save money when buying your groceries"
+              className="rounded"
+            ></img>
+          </div>
 
-      <Navbar />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomeView
-              confirmedList={confirmedList}
-              saveListInParent={saveListInParent}
-              shopsSelected={(shops) => shopsSelected(shops)}
-              selectedShops={selectedShops}
-            />
-          }
-        />
-        <Route
-          path="/AddGroceryList"
-          element={<AddGroceryListView handleConfirmList={handleConfirmList} />}
-        />
-        <Route path="/myLists" element={<MyListsView />} />
-      </Routes>
+          <Navbar />
+          <div className="container-md">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomeView
+                    confirmedList={confirmedList}
+                    saveListInParent={saveListInParent}
+                    shopsSelected={(shops) => shopsSelected(shops)}
+                    selectedShops={selectedShops}
+                  />
+                }
+              />
+              <Route
+                path="/AddGroceryList"
+                element={
+                  <AddGroceryListView handleConfirmList={handleConfirmList} />
+                }
+              />
+              <Route path="/myLists" element={<MyListsView />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

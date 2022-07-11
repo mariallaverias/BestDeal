@@ -7,7 +7,12 @@ function Button(props) {
 
   return (
     <div>
-      <button onClick={handleSubmit}>{props.buttonName}</button>
+      <button
+        className="btn btn-outline-success btn-lg "
+        onClick={handleSubmit}
+      >
+        {props.buttonName}
+      </button>
     </div>
   );
 }
