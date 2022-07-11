@@ -47,6 +47,11 @@ function HomeView(props) {
     props.saveListInParent();
   };
 
+  //Code from: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div>
       {!displayList ? (
@@ -96,6 +101,9 @@ function HomeView(props) {
           </tr>
         </thead>
       </table>
+      {displayList ? (
+        <button onClick={refreshPage}>New Grocery List</button>
+      ) : null}
     </div>
   );
 }

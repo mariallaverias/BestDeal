@@ -50,7 +50,8 @@ function Supermarket(props) {
   const calculateTotalPrice = async () => {
     let result = 0;
     const ids =
-      display && (await display.map((item) => (result += Number(item.price))));
+      display.length > 0 &&
+      (await display.map((item) => (result += Number(item.price))));
     await setTotal(Number(result));
   };
   return (

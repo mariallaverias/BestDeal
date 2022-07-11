@@ -13,8 +13,8 @@ function AddGroceryListView(props) {
 
   const [allProducts, setProducts] = useState([]); //STATE 1
   const [productCategories, setProductCategories] = useState([]); //STATE 2
-  const [newItems, setNewItems] = useState(); // STATE 3
-  const [filteredList, setFilteredList] = useState(); // STATE 4
+  const [newItems, setNewItems] = useState([]); // STATE 3
+  const [filteredList, setFilteredList] = useState([]); // STATE 4
 
   useEffect(() => {
     getProducts();
@@ -61,6 +61,14 @@ function AddGroceryListView(props) {
     setFilteredList(y);
   };
 
+  const removeFromFilteredList = (item) => {
+    let id = Number(item);
+    let newFilteredList = filteredList.filter((items) => items.id !== id);
+
+    console.log(newFilteredList);
+    setFilteredList(newFilteredList);
+  };
+
   // PASING TO PARENT
   const handleConfirmList = () => {
     props.handleConfirmList(filteredList);
@@ -76,6 +84,7 @@ function AddGroceryListView(props) {
       <DisplayGroceryList
         allProducts={allProducts}
         filteredList={filteredList}
+        removeFromFilteredList={removeFromFilteredList}
       />
       {newItems && newItems.length > 0 ? (
         <Button function={handleConfirmList} buttonName="Confirm List" />

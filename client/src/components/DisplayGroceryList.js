@@ -11,7 +11,17 @@ function DisplayGroceryList(props) {
   const showItems = async () => {
     const x =
       props.filteredList &&
-      props.filteredList.map((p) => <li key={p.id}>{p.name}</li>); // creates the <LI's to print>
+      props.filteredList.map((p) => (
+        <li key={p.id}>
+          <p className="inline">{p.name}</p>{" "}
+          <button
+            className="inline"
+            onClick={(id) => props.removeFromFilteredList(p.id)}
+          >
+            Delete
+          </button>
+        </li>
+      )); // creates the <LI's to print>
     setGroceryList([x]);
   };
 
