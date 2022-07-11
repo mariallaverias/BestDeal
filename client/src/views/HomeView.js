@@ -49,7 +49,13 @@ function HomeView(props) {
 
   return (
     <div>
-      <Welcome shops={shops} shopsSelected={(shops) => shopsSelected(shops)} />
+      {!displayList ? (
+        <Welcome
+          shops={shops}
+          shopsSelected={(shops) => shopsSelected(shops)}
+        />
+      ) : null}
+
       <div>{displayList}</div>
       <div>
         {confirmedList ? (
