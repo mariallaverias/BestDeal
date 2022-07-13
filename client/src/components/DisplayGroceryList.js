@@ -8,6 +8,8 @@ function DisplayGroceryList(props) {
     showItems();
   }, [props.filteredList]);
 
+  //this function creates all the items (<li>) to display in the grocery list
+  // each item has also a button to remove it from the list.
   const showItems = async () => {
     const x =
       props.filteredList &&
@@ -29,9 +31,6 @@ function DisplayGroceryList(props) {
     setGroceryList([x]);
   };
 
-  // const handleSubmit = () => {
-  //   props.addList();
-  // };
   return (
     <div className="container">
       <h3>Grocery List</h3>

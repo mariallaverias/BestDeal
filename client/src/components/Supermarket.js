@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 
 function Supermarket(props) {
   ////****DATA****////
-  const marketName = props.marketName;
-  const shopId = Number(props.shopId);
-  const confirmedList = props.confirmedList;
+
+  const marketName = props.marketName; //supermarket named passed by parent
+  const shopId = Number(props.shopId); //supermarket id passed by parent
+  const confirmedList = props.confirmedList; //grocery list passed by parent
   const [shopProds, setShopProds] = useState([]); //USESTATE 2
   const [display, setDisplay] = useState([]); // USESTATE 3
   const [total, setTotal] = useState(0); // USESTATE 4
@@ -46,6 +47,8 @@ function Supermarket(props) {
 
     await setDisplay(selection);
   };
+
+  //calculate total price of the grocery list
 
   const calculateTotalPrice = async () => {
     let result = 0;

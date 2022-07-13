@@ -25,13 +25,9 @@ function SelectGroceriesForm(props) {
     listProductsMenu();
   }, [selectedProdCat]);
 
-  // useEffect(() => {
-  //   props.listGroceryList();
-  // }, [items]);
-
   // *****Functions to display Drop Down in Form*****//
 
-  // Product Categories Dropdown
+  // Creates Product Categories Dropdown
   const listProductCategoriesMenu = async (categories) => {
     const productCategoriesList = await productCategories.map((pC) => (
       <option key={pC.id} value={pC.id}>
@@ -41,7 +37,7 @@ function SelectGroceriesForm(props) {
     setTagProdCat(productCategoriesList);
   };
 
-  // Filtered Products based on category Dropdown
+  // Creates dropdown with Filtered Products based on category
   const listProductsMenu = async () => {
     const filterproducts = await allProducts.filter(
       (p) => p.fk_productCategoryId === Number(selectedProdCat)
@@ -58,20 +54,22 @@ function SelectGroceriesForm(props) {
 
   //********Functions for handling changes and submit ********
 
+  //sets state with the product category selected
   const handleCategoryChange = (event) => {
     setSelectedProdCat(event.target.value);
   };
 
+  //updates items added to grocery list
   const handleSubmit = (event) => {
     event.preventDefault();
     let newItems = [...items, selectedProd];
 
     setItems(newItems);
     props.listGroceryList(newItems);
-
-    // I want to show the selected product in the list div.
-    // I have to grab the product Id saved as State in Selected Prod
   };
+
+  // I want to show the selected product in the list div.
+  // I have to grab the product Id saved as State in Selected Prod
 
   const handleProductChange = (event) => {
     setSelectedProd(event.target.value);

@@ -6,6 +6,7 @@ export default function Welcome(props) {
   const [checked, setChecked] = useState("");
   const [selectedShops, setSelectedShops] = [];
 
+  //sets the selected shops to compare as state
   const handleClick = (event) => {
     if (event.target.checked) {
       const clicked = event.target.name;
