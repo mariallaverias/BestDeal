@@ -54,3 +54,6 @@ img {
   width: 100px;
   height: 100px;
 }
+footer {
+  text-size-adjust: 0.5 rem px;
+}

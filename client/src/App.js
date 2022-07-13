@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import logo from "./images/Best-Deal.jpg";
+import logo from "./images/BestDealLogo.png";
 
 //***Views***
 import HomeView from "./views/HomeView";
@@ -40,7 +40,7 @@ function App() {
     <div>
       <div className="bg">
         <div className="App bg ">
-          <div className="container">
+          <div>
             <img
               src={logo}
               alt="Best Deal Logo - save money when buying your groceries"
@@ -73,6 +73,13 @@ function App() {
           </div>
         </div>
       </div>
+      <footer>
+        <p>
+          _This is a student project that was created at
+          [CodeOp](http://codeop.tech), a full stack development bootcamp in
+          Barcelona._
+        </p>
+      </footer>
     </div>
   );
 }

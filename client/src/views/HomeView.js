@@ -52,7 +52,7 @@ function HomeView(props) {
   };
 
   const saveList = () => {
-    props.saveListInParent();
+    navigate("/myLists");
   };
 
   //Code to refreshPage from: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
@@ -73,8 +73,13 @@ function HomeView(props) {
         <ul className="list-group">{displayList}</ul>
       </div>
       <div>
-        {confirmedList ? (
+        {/* {confirmedList ? (
           <Button function={saveList} buttonName="Save List" />
+        ) : null} */}
+        {confirmedList ? (
+          <button className="btn  btn-warning" onClick={saveList}>
+            Save List
+          </button>
         ) : null}
       </div>
       <div className="container">

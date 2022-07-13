@@ -6,7 +6,7 @@ function Button(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <button
         className="btn btn-outline-success btn-lg "
         onClick={handleSubmit}
