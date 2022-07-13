@@ -6,7 +6,7 @@ const db = require("../model/helper");
 async function shopMustExist(req, res, next) {
   try {
     const { id } = req.params;
-    const result = await db(`SELECT * FROM shops WHERE id=${id}`);
+    const result = await db(`SELECT * FROM shops WHERE shopId=${id}`);
     if (result.data.length) {
       next();
     } else res.status(404).send({ message: "Shop does not exist" });
@@ -29,7 +29,7 @@ router.get("/", async function (req, res, next) {
 router.get("/:id", shopMustExist, async function (req, res, next) {
   try {
     const { id } = req.params;
-    const result = await db(`SELECT * FROM shops WHERE id=${id}`);
+    const result = await db(`SELECT * FROM shops WHERE shopId=${id}`);
     res.status(200).send(result.data[0]);
   } catch (err) {
     res.status(500).send({ error: err.message });
