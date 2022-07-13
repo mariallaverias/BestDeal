@@ -27,16 +27,12 @@ Run npm run migrate in the project folder of this repository, in a new terminal 
 
 This will createthe following tables in your database:
 
-+---------------------+
-| Tables_in_groceries |
-+---------------------+
-| list |
-| productcategories |
-| productitems |
-| products_list |
-| shops |
-| shops_productItems |
-+---------------------+
+The tables that contain dummy data are:
+
+- productcategories
+- productitems
+- shops
+- shops_productItems
 
 The tables that contain dummy data are:
 
