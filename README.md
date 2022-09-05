@@ -85,6 +85,7 @@ There are currently 3 views:
 Mostly Bootstrap with some CSS to fine-tune certain displays.
 
 ## Potential future extensions:
+These are some ideas and suggestions for further development that could add more value to the final user of the app:
 
 - Authentication and authorization so that a user can register, login, save, delete, edit and reuse previously used grocery lists.
 - Geolocation could potentially help the user decide if the money saved is worth the distance of the shop
