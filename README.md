@@ -1,17 +1,20 @@
 # BestDeal
 
-Price comparison tool for grocery lists.
+Best Deal is a price comparison tool for grocery lists. It's my first app and MVP project as part of my Full Stack Development Bootcamp at CodeOp and it was built in a week. 
 
-The main idea is that a user can create a grocery list and receive how much that grocery list total cost would be in different supermarkets.
+The main idea is that a user can create a grocery list and receive in exchange how much that grocery list total cost would be in different supermarkets.
+The idea behind the app arose a personal need:  why not having a tool that helps you find the most convenient final price of all the combined items you need to shop for, instead of individually searching each item in each shops's site?
 
-Here is a first draft of a Userflow. In orange what has been developed and in blue what still hasn't and could be potential ideas for future extensions.
+The first approach to the project was to find open API's of shops and supermarkets in Barcelona, but since that was finally not available I created the backend and databases with dummy data to prove the concept. 
+
+Here is a first draft of a Userflow. In orange what has been developed and in blue what still hasn't and could be potential ideas for future extensions of the app.
 
 ![Userflow](support/Userflow.png)
 
 ## Dependencies
 
-Run npm install in project directory. This will install server-related dependencies such as express.
-cd client and run npm install. This will install client dependencies (React).
+Run npm install in project directory. This will install server-related dependencies such as Express.
+cd into the client golder and run npm install. This will install  all client dependencies (React).
 
 ## Database Prep
 
@@ -25,16 +28,7 @@ DB_PASS=YOURPASSWORD
 
 Run npm run migrate in the project folder of this repository, in a new terminal window.
 
-This will createthe following tables in your database:
-
-The tables that contain dummy data are:
-
-- productcategories
-- productitems
-- shops
-- shops_productItems
-
-The tables that contain dummy data are:
+This will create the following tables containing dummy data in your database:
 
 - productcategories
 - productitems
@@ -45,13 +39,13 @@ So far there are:
 
 3 shops (shops table), each contain 24 product items(productitems table) with different prices each (contained in the shops_productItems table).
 
-Here is a picture of how the tables are related:
+### Database Schema: 
 
 ![table relationships](support/tables-dbdesigner.png)
 
-Methods and routes to these tables:
+Methods and routes built to these tables:
 
-All tables have their get all / get by id methods and routes built. Only the List table contains a Delete and Post method, but has not been used in the front-end and is empty.
+All tables have their get all / get by id methods and routes built. Only the List table contains a Delete and Post method, but has not been used in the front-end yet.
 
 ## Development
 
@@ -62,7 +56,7 @@ In another terminal, do cd client and run npm start to start the client in devel
 
 ### Views
 
-There are 3 views:
+There are currently 3 views:
 
 - Homeview:
   at the begining it only displays the "welcome" component to allow the user to select which shops it would like the app to compare prices in.
@@ -77,7 +71,7 @@ There are 3 views:
 - Mylists View:
   This view only includes plain html, there is no logic built in to any of the tags or buttons.
 
-### Components
+### React Components
 
 - Button component is just a button that onClick calls the cb function passed by the parent component. So far it is only used in the AddGroceryList view.
 - DisplayGroceryList: displays items added to the grocerylist. User can delete added items.
@@ -88,5 +82,16 @@ There are 3 views:
 
 ## Styling
 
-I used Bootstrap and CSS to style it.  
-Note: There is an "unexperienced" use of the "container" className all over.
+Mostly Bootstrap with some CSS to fine-tune certain displays.
+
+## Potential future extensions:
+
+- Authentication and authorization so that a user can register, login, save, delete, edit and reuse previously used grocery lists.
+- Geolocation could potentially help the user decide if the money saved is worth the distance of the shop
+- Since APIs aren't available yet, perhaps web scrapping can be a potential solution into populating the tool with real data.
+- Receiving alerts for offers of previously purchased product combinations or Receiving recommendations to stock up on product offers
+
+## Technologies used to build this project:
+
+JavaScript ES6+, Node.js, Express.js, React, Bootstrap, CSS, HTML
+
