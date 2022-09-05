@@ -69,7 +69,7 @@ There are currently 3 views:
   at the bottom it displays the "DisplayGroceryList" component that shows the products added to the grocery list.
 
 - Mylists View:
-  This view only includes plain html, there is no logic built in to any of the tags or buttons.
+  This view only includes plain HTML, there is no logic built yet into any of the tags or buttons.
 
 ### React Components
 
@@ -80,9 +80,6 @@ There are currently 3 views:
 - Supermarket: displays the confirmed grocery list in each supermarket with the prices of each item and total.
 - Welcome: diplays the checkboxes that allow the user to select the shops it wants to compare grocery lists in.
 
-## Styling
-
-Mostly Bootstrap with some CSS to fine-tune certain displays.
 
 ## Potential future extensions:
 These are some ideas and suggestions for further development that could add more value to the final user of the app:
@@ -94,7 +91,7 @@ These are some ideas and suggestions for further development that could add more
 
 ## Technologies used to build this project:
 
-JavaScript ES6+, Node.js, Express.js, React, Bootstrap, CSS, HTML
+JavaScript ES6+, Node.js, Express.js, React, HTML. For styling mostly Bootstrap with some CSS to finetune details. 
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
 
