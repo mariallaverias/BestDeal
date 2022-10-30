@@ -46,6 +46,7 @@ So far there are:
 Methods and routes built to these tables:
 
 All tables have their get all / get by id methods and routes built. Only the List table contains a Delete and Post method, but has not been used in the front-end yet.
+[Api routes Design](https://docs.google.com/document/d/1sydR4GZr1b-wEJyahIPvN4CW9Qa9EMvAvraLGHRZEnI/edit?usp=sharing)
 
 ## Development
 
